@@ -1,0 +1,33 @@
+{
+    "local": {
+        "host": {
+            "static": "http://localhost:8000"
+        },
+        "redis": {
+            "port": 6379,
+            "host": "127.0.0.1",
+            "db": 0
+        },
+        "mysql": {
+            "database": "GameForum",
+            "username": "root",
+            "password": "664198",
+            "options": {
+                "host": "localhost",
+                "dialect": "mysql",
+                "pool": {
+                    "max": 5,
+                    "min": 0,
+                    "idle": 30000
+                }
+            }
+        },
+        "debug": true
+    },
+    "development": {
+        "host": {
+            "static": "/"
+        },
+        "debug": true
+    }
+}
