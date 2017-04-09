@@ -7,6 +7,7 @@ const router = KoaRouter()
  */
 router.get('/', async(ctx, next) => {
     console.log('sort/index')
+    ctx.body = 'sort/index'
 })
 
 export default router
