@@ -1,6 +1,6 @@
 import { UserError } from 'graphql-errors';
 
-let permission = async function(ctx, module) {
+let permission = async function(ctx, next) {
     return;
     if (!ctx.user) {
         throw new UserError({

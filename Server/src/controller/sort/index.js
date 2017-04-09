@@ -5,8 +5,8 @@ const router = KoaRouter()
 /**
  * 获取所有分类
  */
-router.get('/sort', async(ctx, next) => {
-
+router.get('/', async(ctx, next) => {
+    console.log('sort/index')
 })
 
 export default router

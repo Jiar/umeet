@@ -17,6 +17,6 @@ export function pagination(itemType, name) {
             count: { type: GraphQLInt },
             limit: { type: GraphQLInt }
         })
-    });
+    })
 
 }

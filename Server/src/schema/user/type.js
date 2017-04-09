@@ -1,4 +1,3 @@
-
 import {
   GraphQLObjectType,
   GraphQLString,
@@ -22,19 +21,19 @@ let userType = new GraphQLObjectType({
             name: {
                 type: GraphQLString,
                 resolve (user) {
-                  return user.name;
+                  return user.name
                 }
             },
             nick: {
                 type: GraphQLString,
                 resolve (user) {
-                  return user.nick;
+                  return user.nick
                 }
             },
             email: {
                 type: GraphQLString,
                 resolve (user) {
-                  return user.email;
+                  return user.email
                 }
             }
         }
