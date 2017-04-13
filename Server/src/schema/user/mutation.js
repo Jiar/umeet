@@ -6,71 +6,64 @@ import {
   GraphQLNonNull
 } from 'graphql'
 
-import { userType, tokenType } from "./type"
-import validator from "validator"
-import md5 from "md5"
-import { UserError } from 'graphql-errors';
+import UserError from 'graphql-errors'
+import validator from 'validator'
+import md5 from 'md5'
 import permission from '../permission'
+import ERRORS from '../error'
+import { userType, tokenType } from './type'
 
 /**
- * 创建用户 
+ * 用户注册
  */
-let createUser = {
+let signup = {
     type: userType,
     args: {
+        name: {
+            type: new GraphQLNonNull(GraphQLString)
+        },
         email: {
             type: new GraphQLNonNull(GraphQLString)
         },
         password: {
             type: new GraphQLNonNull(GraphQLString)
-        },
-        name: {
-            type: new GraphQLNonNull(GraphQLString) 
         }
     },
-    async resolve(parentValue, {email, password, name}, ctx) {
-        await permission(ctx, "createUser")
-        if (!validator.isEmail(email)) {
-            throw new UserError({
-                code: 40010,
-                msg: "email格式不正确"
-            })
+    async resolve(parentValue, {name, email, password}, ctx) {
+        await permission(ctx, 'signup')
+        if (email == null || email.length == 0) {
+            throw new UserError(ERRORS[41001])
+        }
+        if (name == null || name.length == 0) {
+            throw new UserError(ERRORS[41002])
         }
         if (!validator.isLength(password, {min: 8})) {
-            throw new UserError({
-                code: 40011,
-                msg: "password至少8位"
-            })
+            throw new UserError(ERRORS[41003])
         }
         let isExist = await ctx.models.User.findOne({
-            where: {
-                email: email
-            }
-        })
-        if (isExist) {
-            throw new UserError({
-                code: "40012",
-                msg: "该Email已存在"
-            })
-        }
-        isExist = await ctx.models.User.findOne({
             where: {
                 name: name
             }
         })
         if (isExist) {
-            throw new UserError({
-                code: "40013",
-                msg: "该名字已存在"
-            })
+            throw new UserError(ERRORS[41004])
+        }
+        if (!validator.isEmail(email)) {
+            throw new UserError(ERRORS[41005])
+        }
+        isExist = await ctx.models.User.findOne({
+            where: {
+                email: email
+            }
+        })
+        if (isExist) {
+            throw new UserError(ERRORS[41006])
         }
         let ip = ctx.request.ip
         let ips = ip.split(':')
         if(ips.length > 0) {
             ip = ips[ips.length-1]
         }
-        console.log(ips)
-        console.log(ip)
         let user = await ctx.models.User.create({
             email: email,
             password: md5(password),
@@ -88,67 +81,50 @@ let createUser = {
 let signin = {
     type: tokenType,
     args: {
-        email: {
-            type: new GraphQLNonNull(GraphQLString)
-        },
-        name: {
+        account: {
             type: new GraphQLNonNull(GraphQLString)
         },
         password: {
             type: new GraphQLNonNull(GraphQLString)
         }
     },
-    async resolve(parentValue, {email, name, password}, ctx) {
-        if (!email) {
-            let user = await ctx.models.User.findOne({
-                where: {
-                    email: email
-                }
-            })
-            if (!user) {
-                throw new UserError({
-                    code: 40001, 
-                    msg: "邮箱不存在"
-                })
-            }
-            password = md5(password)
-            if (!user.checkPassword(password)) {
-                throw new UserError({
-                    code: 40003,
-                    msg: "密码不正确"
-                });
-            }
-            return user
-        } else if(!name) {
+    async resolve(parentValue, {account, password}, ctx) {
+        if (account == null || account.length == 0) {
+            throw new UserError(ERRORS[41011])
+        }
+        if (!validator.isEmail(account)) {
             let user = await ctx.models.User.findOne({
                 where: {
                     name: name
                 }
             })
             if (!user) {
-                throw new UserError({
-                    code: 40002, 
-                    msg: "用户名不存在"
-                })
+                throw new UserError(ERRORS[41012])
             }
             password = md5(password)
             if (!user.checkPassword(password)) {
-                throw new UserError({
-                    code: 40003,
-                    msg: "密码不正确"
-                })
+                throw new UserError(ERRORS[41014])
             }
             return user
         } else {
-            throw new UserError({
-                code: 40004,
-                msg: "邮箱和用户名至少输入一个"
+            let user = await ctx.models.User.findOne({
+                where: {
+                    email: email
+                }
             })
+            if (!user) {
+                throw new UserError(ERRORS[41013])
+            }
+            password = md5(password)
+            if (!user.checkPassword(password)) {
+                throw new UserError(ERRORS[41014])
+            }
+            return user
         }
     }
 }
 
 export default {
-    createUser: createUser,
+    signup: signup,
     signin: signin
 }

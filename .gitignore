@@ -1,4 +1,10 @@
 .DS_Store
+npm-debug.log
 Server/node_modules/
+Admin/node_modules/
+Admin/dist/
 Web/node_modules/
 Web/dist/
+
+
+

@@ -8,14 +8,16 @@ import schema from './schema'
 import router from './controller'
 import jwt from "jsonwebtoken"
 import json from 'koa-json'
+import bodyParser from 'koa-bodyparser'
+// import SessionStore from './middleware/session-store'
+import cors from 'koa2-cors'
 
 class App {
     constructor(config, srcPath) {
         this.config = config
-        // router.all('/graphql', this.authMiddleWare() , convert(graphqlHTTP({
         router.all('/graphql', convert(graphqlHTTP({
             schema: schema,
-            graphiql: true,
+            graphiql: this.config.debug,
             formatError(error) {
                 console.log(error)
                 return {
@@ -27,7 +29,14 @@ class App {
             }
         })))
         this.koa = new Koa()
+            .use(cors({
+                credentials: true,
+                allowMethods: ['GET', 'POST', 'DELETE']
+            }))
             .use(json())
+            .use(bodyParser())
+            // .use(SessionStore)
+            .use(this.localError())
             .use(router.routes())
             .use(router.allowedMethods());
         this.koa.proxy = true
@@ -36,24 +45,11 @@ class App {
         this.koa.context.config = this.config
     }
 
-    authMiddleWare() {
+    localError() {
         return async (ctx, next) => {
-            let token = ctx.headers["x-api-token"] || ctx.query.token
-            if (token) {
-                let user = null
-                try{
-                    user = jwt.verify(token, ctx.config.secret);
-                }catch(e) {
-                    console.log(e)
-                }
-                if (user) {
-                    user = await ctx.models.findById(user.id)
-                    ctx.user = user
-                    await next()
-                }
-                ctx.statusCode = 400
-                ctx.body  = {code: 4001, msg: "invalid token"}
-                return  
+            if (ctx.session.error) {
+                ctx.state.error = ctx.session.error
+                delete ctx.session.error
             }
             await next()
         }

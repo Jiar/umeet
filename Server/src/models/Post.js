@@ -1,8 +1,3 @@
-// import Sort from './Sort'
-// import User from './User'
-// var Sort = require('./Sort')
-// var User = require('./User')
-
 export default (sequelize, Sequelize) => {
     let Post = sequelize.define("Post", {
         id: {
@@ -12,24 +7,24 @@ export default (sequelize, Sequelize) => {
             autoIncrement: true,
             comment: "帖子id"
         },
-        sortId: {
-            type: Sequelize.BIGINT(12),
-            allowNull: false,
-            comment: "帖子分类id",
-            references: { 
-                model: "Sort", 
-                key: "id"
-            }
-        },
-        userId: {
-            type: Sequelize.BIGINT(12),
-            allowNull: false,
-            comment: "用户id",
-            references: { 
-                model: "User", 
-                key: "id"
-            }
-        },
+        // sortId: {
+        //     type: Sequelize.BIGINT(12),
+        //     allowNull: false,
+        //     comment: "帖子分类id",
+        //     references: { 
+        //         model: "Sort", 
+        //         key: "id"
+        //     }
+        // },
+        // userId: {
+        //     type: Sequelize.BIGINT(12),
+        //     allowNull: false,
+        //     comment: "用户id",
+        //     references: { 
+        //         model: "User", 
+        //         key: "id"
+        //     }
+        // },
         title: {
             type: Sequelize.STRING,
             allowNull: false,
@@ -53,10 +48,21 @@ export default (sequelize, Sequelize) => {
             comment: "创建时间"
         },
         isModified: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.BOOLEAN,
             allowNull: false,
-            defaultValue: 0,
-            comment: "发帖后允许修改一次 0: 未修改 1: 已修改"
+            defaultValue: false,
+            comment: "发帖后允许修改一次 false: 未修改 true: 已修改"
+        }
+    }, {
+        classMethods: {
+            associate: function(models) {
+                Post.belongsTo(models.Sort, {
+                    as: "sort"
+                })
+                Post.belongsTo(models.User, {
+                    as: "user"
+                })
+            }
         }
     })
     return Post

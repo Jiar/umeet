@@ -1,15 +1,13 @@
 import {
   GraphQLObjectType,
-  GraphQLString,
   GraphQLInt,
   GraphQLList
 } from 'graphql'
 
 export function pagination(itemType, name) {
-
     return new GraphQLObjectType({
-        name: name + "_pagination",
-        description: "page info",
+        name: name + '_pagination',
+        description: name + ' page info',
         fields: () => ({
             rows: { type: new GraphQLList(itemType) },
             page: { type: GraphQLInt },
@@ -18,5 +16,4 @@ export function pagination(itemType, name) {
             limit: { type: GraphQLInt }
         })
     })
-
 }

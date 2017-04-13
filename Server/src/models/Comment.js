@@ -1,8 +1,3 @@
-// import Post from './Post'
-// import User from './User'
-// var Post = require('./Post')
-// var User = require('./User')
-
 export default (sequelize, Sequelize) => {
     let Comment = sequelize.define("Comment", {
         id: {
@@ -18,24 +13,24 @@ export default (sequelize, Sequelize) => {
             defaultValue: 0,
             comment: "父评论id 即 回复的评论id"
         },
-        postId: {
-            type: Sequelize.BIGINT(12),
-            allowNull: false,
-            comment: "帖子id",
-            references: { 
-                model: "Post", 
-                key: "id"
-            }
-        },
-        userId: {
-            type: Sequelize.BIGINT(12),
-            allowNull: false,
-            comment: "用户id",
-            references: { 
-                model: "User", 
-                key: "id"
-            }
-        },
+        // postId: {
+        //     type: Sequelize.BIGINT(12),
+        //     allowNull: false,
+        //     comment: "帖子id",
+        //     references: { 
+        //         model: "Post", 
+        //         key: "id"
+        //     }
+        // },
+        // userId: {
+        //     type: Sequelize.BIGINT(12),
+        //     allowNull: false,
+        //     comment: "用户id",
+        //     references: { 
+        //         model: "User", 
+        //         key: "id"
+        //     }
+        // },
         content: {
             type: Sequelize.TEXT,
             allowNull: false,
@@ -46,6 +41,17 @@ export default (sequelize, Sequelize) => {
             allowNull: false,
             defaultValue: Sequelize.NOW,
             comment: "创建时间"
+        }
+    }, {
+        classMethods: {
+            associate: function(models) {
+                Comment.belongsTo(models.Post, {
+                    as: "post"
+                })
+                Comment.belongsTo(models.User, {
+                    as: "user"
+                })
+            }
         }
     })
     return Comment

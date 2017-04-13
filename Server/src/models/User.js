@@ -9,6 +9,11 @@ export default (sequelize, Sequelize) => {
             autoIncrement: true,
             comment: "用户id"
         },
+        name: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            comment: "名字"
+        },
         email: {
             type: Sequelize.STRING,
             allowNull: false,
@@ -18,11 +23,6 @@ export default (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false,
             comment: "密码"
-        },
-        name: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            comment: "名字"
         },
         nick: {
             type: Sequelize.STRING,

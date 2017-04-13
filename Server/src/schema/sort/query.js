@@ -5,26 +5,26 @@ import {
   GraphQLList
 } from 'graphql'
 
-import { userType } from './type'
+import { sortType } from './type'
 import { pagination } from '../pagination'
 import permission from '../permission'
 
-let user =  {
-    type: userType,
+let sort =  {
+    type: sortType,
     args: {
         id: {
-            description: 'id of the user',
+            description: 'id of the sort',
             type: GraphQLInt
         }
     },
     async resolve (parentValue, args, ctx) {
-        permission(ctx, 'user')
-        return await ctx.models.User.findById(args.id)
+        permission(ctx, 'sort')
+        return await ctx.models.Sort.findById(args.id)
     }
 }
 
-let users = {
-    type: pagination(userType, 'user'),
+let sorts = {
+    type: pagination(sortType, 'sort'),
     args: {
         page: {
             type: GraphQLInt,
@@ -40,11 +40,11 @@ let users = {
         }
     },
     async resolve (parentValue, { page, order, limit }, ctx) {
-        permission(ctx, 'users')
+        permission(ctx, 'sorts')
         limit = limit || 15
         page = page || 1
         let offset = (page - 1) * limit
-        let result = await ctx.models.User.findAndCountAll({
+        let result = await ctx.models.Sort.findAndCountAll({
             order: order,
             limit: limit,
             offset: offset
@@ -63,6 +63,6 @@ let users = {
 }
 
 export default {
-    user: user,
-    users: users
+    sort: sort,
+    sorts: sorts
 }

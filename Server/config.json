@@ -1,7 +1,7 @@
 {
     "local": {
         "host": {
-            "static": "http://localhost:8000"
+            "static": "http://localhost:6000"
         },
         "redis": {
             "port": 6379,
