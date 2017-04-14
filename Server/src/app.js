@@ -36,7 +36,7 @@ class App {
             .use(json())
             .use(bodyParser())
             // .use(SessionStore)
-            .use(this.localError())
+            // .use(this.localError())
             .use(router.routes())
             .use(router.allowedMethods());
         this.koa.proxy = true

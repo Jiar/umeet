@@ -1,5 +1,6 @@
 {
     "local": {
+        "secret": "test",
         "host": {
             "static": "http://localhost:6000"
         },

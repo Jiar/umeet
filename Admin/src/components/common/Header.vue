@@ -18,19 +18,18 @@
     export default {
         data() {
             return {
-                name: 'linxin'
+                test: 'test'
             }
         },
         computed:{
             username(){
-                let username = localStorage.getItem('ms_username');
-                return username ? username : this.name;
+                return this.$store.getters.signinUser.name;
             }
         },
         methods:{
             handleCommand(command) {
                 if(command == 'loginout'){
-                    localStorage.removeItem('ms_username')
+                    this.$store.state.signinUser = null;
                     this.$router.push('/login');
                 }
             }

@@ -70,15 +70,15 @@ export default (sequelize, Sequelize) => {
         }
     }, {
         instanceMethods: {
-            checkPassword(password) {
-                return bcrypt.compareSync(password, this.password)
-            }
+            // checkPassword(password) {
+            //     return bcrypt.compareSync(password, this.password)
+            // }
         },
         setterMethods: {
-            password(password) {
-                password = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-                this.setDataValue("password", password);
-            }
+            // password(password) {
+            //     password = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+            //     this.setDataValue("password", password)
+            // }
         }
     })
     return User

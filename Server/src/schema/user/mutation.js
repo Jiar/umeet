@@ -6,7 +6,7 @@ import {
   GraphQLNonNull
 } from 'graphql'
 
-import UserError from 'graphql-errors'
+import { UserError } from 'graphql-errors'
 import validator from 'validator'
 import md5 from 'md5'
 import permission from '../permission'
@@ -30,15 +30,15 @@ let signup = {
         }
     },
     async resolve(parentValue, {name, email, password}, ctx) {
-        await permission(ctx, 'signup')
+        // await permission(ctx, 'signup')
         if (email == null || email.length == 0) {
-            throw new UserError(ERRORS[41001])
+            throw new UserError(ERRORS[401001])
         }
         if (name == null || name.length == 0) {
-            throw new UserError(ERRORS[41002])
+            throw new UserError(ERRORS[401002])
         }
         if (!validator.isLength(password, {min: 8})) {
-            throw new UserError(ERRORS[41003])
+            throw new UserError(ERRORS[401003])
         }
         let isExist = await ctx.models.User.findOne({
             where: {
@@ -46,10 +46,10 @@ let signup = {
             }
         })
         if (isExist) {
-            throw new UserError(ERRORS[41004])
+            throw new UserError(ERRORS[401004])
         }
         if (!validator.isEmail(email)) {
-            throw new UserError(ERRORS[41005])
+            throw new UserError(ERRORS[401005])
         }
         isExist = await ctx.models.User.findOne({
             where: {
@@ -57,7 +57,7 @@ let signup = {
             }
         })
         if (isExist) {
-            throw new UserError(ERRORS[41006])
+            throw new UserError(ERRORS[401006])
         }
         let ip = ctx.request.ip
         let ips = ip.split(':')
@@ -90,34 +90,42 @@ let signin = {
     },
     async resolve(parentValue, {account, password}, ctx) {
         if (account == null || account.length == 0) {
-            throw new UserError(ERRORS[41011])
+            throw new UserError(ERRORS[401011])
         }
         if (!validator.isEmail(account)) {
             let user = await ctx.models.User.findOne({
                 where: {
-                    name: name
+                    name: account
                 }
             })
             if (!user) {
-                throw new UserError(ERRORS[41012])
+                throw new UserError(ERRORS[401012])
             }
+            // password = md5(password)
+            // if (!user.checkPassword(password)) {
+            //     throw new UserError(ERRORS[401014])
+            // }
             password = md5(password)
-            if (!user.checkPassword(password)) {
-                throw new UserError(ERRORS[41014])
+            if (user.password != password) {
+                throw new UserError(ERRORS[401014])
             }
             return user
         } else {
             let user = await ctx.models.User.findOne({
                 where: {
-                    email: email
+                    email: account
                 }
             })
             if (!user) {
-                throw new UserError(ERRORS[41013])
+                throw new UserError(ERRORS[401013])
             }
+            // password = md5(password)
+            // if (!user.checkPassword(password)) {
+            //     throw new UserError(ERRORS[401014])
+            // }
             password = md5(password)
-            if (!user.checkPassword(password)) {
-                throw new UserError(ERRORS[41014])
+            if (user.password != password) {
+                throw new UserError(ERRORS[401014])
             }
             return user
         }

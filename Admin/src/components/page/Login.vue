@@ -17,8 +17,8 @@
         </div>
     </div>
 </template>
-
 <script>
+    import { Message } from 'element-ui';
     export default {
         data: function(){
             return {
@@ -41,13 +41,25 @@
                 const self = this;
                 self.$refs[formName].validate((valid) => {
                     if (valid) {
-                        localStorage.setItem('ms_username',self.ruleForm.username);
-                        self.$router.push('/readme');
+                        self.$store.dispatch('signin', {
+                            account: this.ruleForm.username,
+                            password: this.ruleForm.password
+                        }).then( result => {
+                            if (result.code) {
+                                Message({
+                                    type: 'error',
+                                    showClose: true,
+                                    message: result.msg
+                                });
+                            } else {
+                                self.$router.push('/readme');
+                            }
+                        });
                     } else {
                         console.log('error submit!!');
                         return false;
                     }
-                });
+                })
             }
         }
     }

@@ -4,7 +4,7 @@ import {
   GraphQLNonNull
 } from 'graphql'
 
-import UserError from 'graphql-errors'
+import { UserError } from 'graphql-errors'
 import permission from '../permission'
 import ERRORS from '../error'
 import { sortType } from './type'
