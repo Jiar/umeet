@@ -84,7 +84,6 @@ const actions = {
         let self = this;
         return new Promise((resolve) => {
             users(page, order, limit).then( result => {
-                console.log(eval(result));
                 resolve(result.user);
                 commit(types.USER_USERS, { users: result.user });
             }).catch(error => {

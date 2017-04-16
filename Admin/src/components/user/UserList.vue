@@ -34,7 +34,10 @@
         <div class="pagination">
             <el-pagination
                     layout="prev, pager, next"
-                    :total="100">
+                    :current-page="currentPage"
+                    :page-sizes="pageSizes"
+                    :total="total"
+                    @current-change="pageChange">
             </el-pagination>
         </div>
     </div>
@@ -45,29 +48,41 @@
     export default {
         data() {
             return {
-                
-            }
+                currentPage: 1,
+                pageSizes: [10],
+                total: 0,
+            };
         },
         computed: mapGetters({
             users: 'users'
         }),
         mounted() {
-            const self = this;
-            self.$store.dispatch('users', {
-                page: 1,
-                order: 'id asc',
-                limit: 20
-            }).then( result => {
-                if (result.code) {
-                    Message({
-                        type: 'error',
-                        showClose: true,
-                        message: result.msg
-                    });
-                }
-            });
+            this.getUserList();
         },
         methods: {
+            getUserList() {
+                const self = this;
+                self.$store.dispatch('users', {
+                    page: self.currentPage,
+                    order: 'id asc',
+                    limit: self.pageSizes[0]
+                }).then( result => {
+                    console.log('pages:'+result.pages)
+                    if (result.code) {
+                        Message({
+                            type: 'error',
+                            showClose: true,
+                            message: result.msg
+                        });
+                    } else {
+                        self.total = result.count;
+                    }
+                });
+            },
+            pageChange(currentPage) {
+                this.currentPage = currentPage;
+                this.getUserList();
+            },
             formatter(row, column) {
                 return row.address;
             },
