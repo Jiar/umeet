@@ -62,7 +62,7 @@ function user(id) {
 function users(page, order, limit) {
     let graphql = `
     {
-        user: users(page:"${page}", order:"${order}", limit:"${limit}") {
+        user: users(page:${page}, order:"${order}", limit:${limit}) {
             rows {
                 id,
                 name,

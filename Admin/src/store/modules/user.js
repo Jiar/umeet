@@ -29,13 +29,13 @@ const mutations = {
         }
         state.signinUser = signinUser;
     },
-    [types.USER_USER](state, {singleUser}) {
+    [types.USER_USER](state, {singleUser, error}) {
         if (error) {
             state.error = error;
         }
         state.singleUser = singleUser;
     },
-    [types.USER_USERS](state, {users}) {
+    [types.USER_USERS](state, {users, error}) {
         if (error) {
             state.error = error;
         }
@@ -45,8 +45,16 @@ const mutations = {
 
 const actions = {
     signup({commit}, {name, email, password}) {
-        signup(name, email, password)
-        .then(signup=>commit(types.USER_SIGNUP,{signup}))
+        let self = this;
+        return new Promise((resolve) => {
+            signup(name, email, password).then( result => {
+                resolve(result.user);
+                commit(types.USER_SIGNUP, { signupUser: result.user });
+            }).catch(error => {
+                resolve(error);
+                commit(types.USER_SIGNUP, { error: error });
+            });
+        });
     },
     signin({commit}, {account, password}) {
         let self = this;
@@ -61,12 +69,29 @@ const actions = {
         });
     },
     user({commit}, {id}) {
-        user(id)
-        .then(user=>commit(types.USER_USER,{user}))
+        let self = this;
+        return new Promise((resolve) => {
+            user(id).then( result => {
+                resolve(result.user);
+                commit(types.USER_USER, { user: result.user });
+            }).catch(error => {
+                resolve(error);
+                commit(types.USER_USER, { error: error });
+            });
+        });
     },
     users({commit}, {page, order, limit}) {
-        users(page, order, limit)
-        .then(users=>commit(types.USER_USERS,{users}))
+        let self = this;
+        return new Promise((resolve) => {
+            users(page, order, limit).then( result => {
+                console.log(eval(result));
+                resolve(result.user);
+                commit(types.USER_USERS, { users: result.user });
+            }).catch(error => {
+                resolve(error);
+                commit(types.USER_USERS, { error: error });
+            });
+        });
     }
 }
 

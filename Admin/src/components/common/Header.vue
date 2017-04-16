@@ -18,12 +18,17 @@
     export default {
         data() {
             return {
-                test: 'test'
+                name: 'nick'
             }
         },
         computed:{
             username(){
-                return this.$store.getters.signinUser.name;
+                let signinUser = this.$store.getters.signinUser;
+                if (signinUser) {
+                    return signinUser.name;
+                } else {
+                    return this.name;
+                }
             }
         },
         methods:{

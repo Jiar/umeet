@@ -40,7 +40,7 @@ let users = {
         }
     },
     async resolve (parentValue, { page, order, limit }, ctx) {
-        permission(ctx, 'users')
+        // permission(ctx, 'users')
         limit = limit || 15
         page = page || 1
         let offset = (page - 1) * limit

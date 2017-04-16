@@ -52,14 +52,13 @@
                                     message: result.msg
                                 });
                             } else {
-                                self.$router.push('/readme');
+                                self.$router.push('/dashboard');
                             }
                         });
                     } else {
-                        console.log('error submit!!');
                         return false;
                     }
-                })
+                });
             }
         }
     }
@@ -79,7 +78,6 @@
         text-align: center;
         font-size:30px;
         color: #fff;
-
     }
     .ms-login{
         position: absolute;
