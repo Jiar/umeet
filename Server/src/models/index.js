@@ -20,6 +20,7 @@ class Models {
             .filter(function(file) {
                 return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js')
             })
+        modelFiles = ['User.js', 'Sort.js', 'Post.js', 'Comment.js'];
         for(let modelFile of modelFiles) {
             let model = this.sequelize["import"](path.join(__dirname, modelFile))
             db[model.name] = model

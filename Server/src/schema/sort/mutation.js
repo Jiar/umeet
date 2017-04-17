@@ -27,7 +27,7 @@ let createSort = {
     },
     async resolve(parentValue, {pid, title, description}, ctx) {
         // await permission(ctx, 'createSort')
-        let isExist = await ctx.models.Sort.findOne({
+        let isExist = await ctx.models.sort.findOne({
             where: {
                 title: title
             }
@@ -37,7 +37,7 @@ let createSort = {
         }
         pid = pid == null ? 0 : pid
         if (pid != 0) {
-            isExist = await ctx.models.Sort.findOne({
+            isExist = await ctx.models.sort.findOne({
                 where: {
                     id: pid
                 }
@@ -46,7 +46,7 @@ let createSort = {
                 throw new UserError(ERRORS[401022])
             }
         }
-        let sort = await ctx.models.Sort.create({
+        let sort = await ctx.models.sort.create({
             pid: pid,
             title: title,
             description: description

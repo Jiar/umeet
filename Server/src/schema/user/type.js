@@ -16,67 +16,67 @@ let userType = new GraphQLObjectType({
             id: {
               type: GraphQLInt,
               resolve(user) {
-                return user.id
+                return user.id;
               }
             },
             name: {
                 type: GraphQLString,
                 resolve (user) {
-                  return user.name
+                  return user.name;
                 }
             },
             email: {
                 type: GraphQLString,
                 resolve (user) {
-                  return user.email
+                  return user.email;
                 }
             },
             nick: {
                 type: GraphQLString,
                 resolve (user) {
-                  return user.nick
+                  return user.nick;
                 }
             },
             motto: {
                 type: GraphQLString,
                 resolve (user) {
-                  return user.motto
+                  return user.motto;
                 }
             },
             avatar: {
                 type: GraphQLString,
                 resolve (user) {
-                  return user.avatar
+                  return user.avatar;
                 }
             },
             score: {
                 type: GraphQLInt,
                 resolve (user) {
-                  return user.score
+                  return user.score;
                 }
             },
             createTime: {
                 type: GraphQLString,
                 resolve (user) {
-                  return moment(user.createTime).format('YYYY-MM-DD HH:mm:ss')
+                  return moment(user.createTime).format('YYYY-MM-DD HH:mm:ss');
                 }
             },
             lastUpdateTime: {
                 type: GraphQLString,
                 resolve (user) {
-                  return moment(user.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss')
+                  return moment(user.lastUpdateTime).format('YYYY-MM-DD HH:mm:ss');
                 }
             },
             lastLoginTime: {
                 type: GraphQLString,
                 resolve (user) {
-                  return moment(user.lastLoginTime).format('YYYY-MM-DD HH:mm:ss')
+                  return moment(user.lastLoginTime).format('YYYY-MM-DD HH:mm:ss');
                 }
             },
             lastLoginIp: {
                 type: GraphQLString,
                 resolve (user) {
-                  return moment(user.lastLoginIp).format('YYYY-MM-DD HH:mm:ss')
+                  return moment(user.lastLoginIp).format('YYYY-MM-DD HH:mm:ss');
                 }
             }
         }

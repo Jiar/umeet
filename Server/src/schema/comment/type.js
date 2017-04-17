@@ -18,38 +18,40 @@ let commentType = new GraphQLObjectType({
             id: {
                 type: GraphQLInt,
                 resolve(comment) {
-                    return comment.id
+                    return comment.id;
                 }
             },
             pid: {
                 type: GraphQLInt,
                 resolve(comment) {
-                    return comment.pid
+                    return comment.pid;
                 }
             },
             post: {
                 type: postType,
-                resolve(comment) {
-                    return comment.getPost
+                async resolve(comment) {
+                    // bug
+                    // return await comment.getPost();
+                    return await null;
                 }
             },
             user: {
                 type: userType,
-                resolve(comment) {
-                    return comment.getUser
+                async resolve(comment) {
+                    return await comment.getUser();
                 }
             },
             content: {
                 type: GraphQLString,
                 description: '评论内容',
                 resolve (comment) {
-                    return comment.content
+                    return comment.content;
                 }
             },
             createTime: {
                 type: GraphQLString,
                 resolve (comment) {
-                    return moment(comment.createTime).format('YYYY-MM-DD HH:mm:ss')
+                    return moment(comment.createTime).format('YYYY-MM-DD HH:mm:ss');
                 }
             }
         }

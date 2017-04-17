@@ -2,19 +2,19 @@
     <div class="table">
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-menu"></i> 表格</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-menu"></i> 用户管理</el-breadcrumb-item>
                 <el-breadcrumb-item>用户列表</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
 
         <el-table :data="users.rows" border style="width: 100%">
-            <el-table-column prop="id" label="id" sortable width="150">
+            <el-table-column prop="id" label="编号" sortable width="120">
             </el-table-column>
-            <el-table-column prop="name" label="name" width="120">
+            <el-table-column prop="name" label="名字" sortable width="150">
             </el-table-column>
-            <el-table-column prop="email" label="email">
+            <el-table-column prop="email" label="邮箱" sortable>
             </el-table-column>
-            <el-table-column prop="score" label="score">
+            <el-table-column prop="score" label="积分" sortable>
             </el-table-column>
             <!--<el-table-column prop="tag" label="标签" width="120"
                     :filters="[{ text: '家', value: '家' }, { text: '公司', value: '公司' }]"
@@ -51,7 +51,7 @@
         data() {
             return {
                 currentPage: 1,
-                pageSizes: [10],
+                pageSizes: [15],
                 total: 0,
             };
         },

@@ -1,58 +1,36 @@
-export default (sequelize, Sequelize) => {
-    let Comment = sequelize.define("Comment", {
+export default (sequelize, dataType) => {
+    let comment = sequelize.define("comment", {
         id: {
-            type: Sequelize.BIGINT(12),
+            type: dataType.BIGINT(12),
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
             comment: "评论id"
         },
         pid: {
-            type: Sequelize.BIGINT(12),
+            type: dataType.BIGINT(12),
             allowNull: false,
             defaultValue: 0,
             comment: "父评论id 即 回复的评论id"
         },
-        // postId: {
-        //     type: Sequelize.BIGINT(12),
-        //     allowNull: false,
-        //     comment: "帖子id",
-        //     references: { 
-        //         model: "Post", 
-        //         key: "id"
-        //     }
-        // },
-        // userId: {
-        //     type: Sequelize.BIGINT(12),
-        //     allowNull: false,
-        //     comment: "用户id",
-        //     references: { 
-        //         model: "User", 
-        //         key: "id"
-        //     }
-        // },
         content: {
-            type: Sequelize.TEXT,
+            type: dataType.TEXT,
             allowNull: false,
             comment: "评论内容"
         },
         createTime: {
-            type: Sequelize.DATE,
+            type: dataType.DATE,
             allowNull: false,
-            defaultValue: Sequelize.NOW,
+            defaultValue: dataType.NOW,
             comment: "创建时间"
         }
     }, {
         classMethods: {
             associate: function(models) {
-                Comment.belongsTo(models.Post, {
-                    as: "post"
-                })
-                Comment.belongsTo(models.User, {
-                    as: "user"
-                })
+                // comment.belongsTo(models.post);
+                comment.belongsTo(models.user);
             }
         }
     })
-    return Comment
+    return comment
 }

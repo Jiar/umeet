@@ -19,16 +19,6 @@ const mutations = {
 
 }
 
-// export interface StoreOptions<S> {
-//   state?: S;
-//   getters?: GetterTree<S, S>;
-//   actions?: ActionTree<S, S>;
-//   mutations?: MutationTree<S>;
-//   modules?: ModuleTree<S>;
-//   plugins?: Plugin<S>[];
-//   strict?: boolean;
-// }
-
 export default new Vuex.Store({
     state,
     getters,

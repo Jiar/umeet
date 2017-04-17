@@ -1,34 +1,34 @@
-export default (sequelize, Sequelize) => {
-    let Sort = sequelize.define("Sort", {
+export default (sequelize, dataType) => {
+    let sort = sequelize.define("sort", {
         id: {
-            type: Sequelize.BIGINT(12),
+            type: dataType.BIGINT(12),
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
             comment: "帖子分类id"
         },
         pid: {
-            type: Sequelize.BIGINT(12),
+            type: dataType.BIGINT(12),
             allowNull: false,
             defaultValue: 0,
             comment: "父分类id"
         },
         title: {
-            type: Sequelize.STRING,
+            type: dataType.STRING,
             allowNull: false,
             comment: "帖子分类标题"
         },
         description: {
-            type: Sequelize.STRING,
+            type: dataType.STRING,
             allowNull: true,
             comment: "帖子分类描述"
         },
         createTime: {
-            type: Sequelize.DATE,
+            type: dataType.DATE,
             allowNull: false,
-            defaultValue: Sequelize.NOW,
+            defaultValue: dataType.NOW,
             comment: "创建时间"
         }
     })
-    return Sort
+    return sort
 }

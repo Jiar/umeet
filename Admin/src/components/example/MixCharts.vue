@@ -2,7 +2,7 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-date"></i> 图表</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-star-on"></i> 示例用法</el-breadcrumb-item>
                 <el-breadcrumb-item>混合图表</el-breadcrumb-item>
             </el-breadcrumb>
         </div>

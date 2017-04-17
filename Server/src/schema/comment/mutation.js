@@ -32,7 +32,7 @@ let createComment = {
         // await permission(ctx, 'createComment')
         pid = pid || 0
         if (pid != 0) {
-            let isExist = await ctx.models.Comment.findOne({
+            let isExist = await ctx.models.comment.findOne({
                 where: {
                     id: pid
                 }
@@ -41,7 +41,7 @@ let createComment = {
                 throw new UserError(ERRORS[401041])
             }
         }
-        let comment = await ctx.models.Comment.create({
+        let comment = await ctx.models.comment.create({
             pid: pid,
             postId: postId,
             userId: userId,

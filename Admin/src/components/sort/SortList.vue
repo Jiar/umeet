@@ -2,7 +2,7 @@
     <div class="table">
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-menu"></i> 表格</el-breadcrumb-item>
+                <el-breadcrumb-item><i class="el-icon-menu"></i> 分类管理</el-breadcrumb-item>
                 <el-breadcrumb-item>分类列表</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
@@ -22,11 +22,11 @@
             return {
                 columns: [
                     {
-                        name: '分类编号',
+                        name: '编号',
                         key: 'id'
                     },
                     {
-                        name: '父分类编号',
+                        name: '父编号',
                         key: 'pid'
                     },
                     {

@@ -19,7 +19,7 @@ let user =  {
     },
     async resolve (parentValue, args, ctx) {
         permission(ctx, 'user')
-        return await ctx.models.User.findById(args.id)
+        return await ctx.models.user.findById(args.id)
     }
 }
 
@@ -44,7 +44,7 @@ let users = {
         limit = limit || 15
         page = page || 1
         let offset = (page - 1) * limit
-        let result = await ctx.models.User.findAndCountAll({
+        let result = await ctx.models.user.findAndCountAll({
             order: order,
             limit: limit,
             offset: offset

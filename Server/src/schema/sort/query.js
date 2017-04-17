@@ -19,7 +19,7 @@ let sort =  {
     },
     async resolve (parentValue, args, ctx) {
         permission(ctx, 'sort')
-        return await ctx.models.Sort.findById(args.id)
+        return await ctx.models.sort.findById(args.id)
     }
 }
 
@@ -44,7 +44,7 @@ let sorts = {
         limit = limit || 15
         page = page || 1
         let offset = (page - 1) * limit
-        let result = await ctx.models.Sort.findAndCountAll({
+        let result = await ctx.models.sort.findAndCountAll({
             order: order,
             limit: limit,
             offset: offset

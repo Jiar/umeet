@@ -1,70 +1,70 @@
 import bcrypt from 'bcrypt-nodejs'
 
-export default (sequelize, Sequelize) => {
-    let User = sequelize.define("User", {
+export default (sequelize, dataType) => {
+    let user = sequelize.define("user", {
         id: {
-            type: Sequelize.BIGINT(12),
+            type: dataType.BIGINT(12),
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
             comment: "用户id"
         },
         name: {
-            type: Sequelize.STRING,
+            type: dataType.STRING,
             allowNull: false,
             comment: "名字"
         },
         email: {
-            type: Sequelize.STRING,
+            type: dataType.STRING,
             allowNull: false,
             comment: "邮箱"
         },
         password: {
-            type: Sequelize.STRING,
+            type: dataType.STRING,
             allowNull: false,
             comment: "密码"
         },
         nick: {
-            type: Sequelize.STRING,
+            type: dataType.STRING,
             allowNull: false,
             comment: "昵称"
         },
         motto: {
-            type: Sequelize.STRING,
+            type: dataType.STRING,
             allowNull: true,
             comment: "座右铭"
         },
         avatar: {
-            type: Sequelize.STRING,
+            type: dataType.STRING,
             allowNull: true,
             comment: "头像"
         },
         score: {
-            type: Sequelize.BIGINT(12),
+            type: dataType.BIGINT(12),
             allowNull: true,
             defaultValue: 200,
             comment: "积分"
         },
         createTime: {
-            type: Sequelize.DATE,
+            type: dataType.DATE,
             allowNull: false,
-            defaultValue: Sequelize.NOW,
+            defaultValue: dataType.NOW,
             comment: "创建时间"
         },
         lastUpdateTime: {
-            type: Sequelize.DATE,
+            type: dataType.DATE,
             allowNull: false,
-            defaultValue: Sequelize.NOW,
+            defaultValue: dataType.NOW,
             comment: "上一次修改信息时间"
         },
         lastLoginTime: {
-            type: Sequelize.DATE,
+            type: dataType.DATE,
             allowNull: false,
-            defaultValue: Sequelize.NOW,
+            defaultValue: dataType.NOW,
             comment: "上一次登录时间"
         },
         lastLoginIp: {
-            type: Sequelize.STRING,
+            type: dataType.STRING,
             allowNull: false,
             comment: "上一次登录ip"
         }
@@ -81,5 +81,5 @@ export default (sequelize, Sequelize) => {
             // }
         }
     })
-    return User
+    return user
 }

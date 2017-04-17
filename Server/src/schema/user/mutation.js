@@ -40,7 +40,7 @@ let signup = {
         if (!validator.isLength(password, {min: 8})) {
             throw new UserError(ERRORS[401003])
         }
-        let isExist = await ctx.models.User.findOne({
+        let isExist = await ctx.models.user.findOne({
             where: {
                 name: name
             }
@@ -51,7 +51,7 @@ let signup = {
         if (!validator.isEmail(email)) {
             throw new UserError(ERRORS[401005])
         }
-        isExist = await ctx.models.User.findOne({
+        isExist = await ctx.models.user.findOne({
             where: {
                 email: email
             }
@@ -64,7 +64,7 @@ let signup = {
         if(ips.length > 0) {
             ip = ips[ips.length-1]
         }
-        let user = await ctx.models.User.create({
+        let user = await ctx.models.user.create({
             email: email,
             password: md5(password),
             name: name,
@@ -93,7 +93,7 @@ let signin = {
             throw new UserError(ERRORS[401011])
         }
         if (!validator.isEmail(account)) {
-            let user = await ctx.models.User.findOne({
+            let user = await ctx.models.user.findOne({
                 where: {
                     name: account
                 }
@@ -111,7 +111,7 @@ let signin = {
             }
             return user
         } else {
-            let user = await ctx.models.User.findOne({
+            let user = await ctx.models.user.findOne({
                 where: {
                     email: account
                 }
