@@ -3,16 +3,18 @@
         <div class="crumbs">
             <el-breadcrumb separator="/">
                 <el-breadcrumb-item><i class="el-icon-menu"></i> 表格</el-breadcrumb-item>
-                <el-breadcrumb-item>基础表格</el-breadcrumb-item>
+                <el-breadcrumb-item>用户列表</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
 
         <el-table :data="users.rows" border style="width: 100%">
-            <el-table-column prop="id" label="Id" sortable width="150">
+            <el-table-column prop="id" label="id" sortable width="150">
             </el-table-column>
-            <el-table-column prop="name" label="Name" width="120">
+            <el-table-column prop="name" label="name" width="120">
             </el-table-column>
             <el-table-column prop="email" label="email">
+            </el-table-column>
+            <el-table-column prop="score" label="score">
             </el-table-column>
             <!--<el-table-column prop="tag" label="标签" width="120"
                     :filters="[{ text: '家', value: '家' }, { text: '公司', value: '公司' }]"
@@ -22,14 +24,14 @@
                     </el-tag>
                 </template>
             </el-table-column>-->
-            <el-table-column label="操作" width="180">
+            <!--<el-table-column label="操作" width="180">
                 <template scope="scope">
                     <el-button size="small"
                             @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                     <el-button size="small" type="danger"
                             @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                 </template>
-            </el-table-column>
+            </el-table-column>-->
         </el-table>
         <div class="pagination">
             <el-pagination
@@ -53,10 +55,12 @@
                 total: 0,
             };
         },
-        computed: mapGetters({
-            users: 'users'
-        }),
-        mounted() {
+        computed: {
+            ...mapGetters({
+                users: 'users'
+            })
+        },
+        beforeMount() {
             this.getUserList();
         },
         methods: {
@@ -67,7 +71,6 @@
                     order: 'id asc',
                     limit: self.pageSizes[0]
                 }).then( result => {
-                    console.log('pages:'+result.pages)
                     if (result.code) {
                         Message({
                             type: 'error',
@@ -83,18 +86,18 @@
                 this.currentPage = currentPage;
                 this.getUserList();
             },
-            formatter(row, column) {
-                return row.address;
-            },
-            filterTag(value, row) {
-                return row.tag === value;
-            },
-            handleEdit(index, row) {
-                this.$message('编辑第'+(index+1)+'行');
-            },
-            handleDelete(index, row) {
-                this.$message.error('删除第'+(index+1)+'行');
-            }
+            // formatter(row, column) {
+            //     return row.address;
+            // },
+            // filterTag(value, row) {
+            //     return row.tag === value;
+            // },
+            // handleEdit(index, row) {
+            //     this.$message('编辑第'+(index+1)+'行');
+            // },
+            // handleDelete(index, row) {
+            //     this.$message.error('删除第'+(index+1)+'行');
+            // }
         }
     }
 </script>

@@ -32,7 +32,7 @@ let createPost = {
         }
     },
     async resolve(parentValue, {sortId, userId, title, type, content}, ctx) {
-        await permission(ctx, 'createPost')
+        // await permission(ctx, 'createPost')
         let sort = await ctx.models.Post.create({
             sortId: sortId,
             userId: userId,

@@ -40,7 +40,7 @@ let comments = {
         }
     },
     async resolve (parentValue, { page, order, limit }, ctx) {
-        permission(ctx, 'comments')
+        // permission(ctx, 'comments')
         limit = limit || 15
         page = page || 1
         let offset = (page - 1) * limit

@@ -58,6 +58,7 @@ let users = {
         result.limit = limit
         result.page = page
         result.pages = pages
+        console.log(eval(result));
         return result
     }
 }

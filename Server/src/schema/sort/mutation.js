@@ -26,7 +26,7 @@ let createSort = {
         }
     },
     async resolve(parentValue, {pid, title, description}, ctx) {
-        await permission(ctx, 'createSort')
+        // await permission(ctx, 'createSort')
         let isExist = await ctx.models.Sort.findOne({
             where: {
                 title: title

@@ -22,6 +22,10 @@ export default new Router({
                     component: resolve => require(['../components/user/UserList.vue'], resolve)
                 },
                 {
+                    path: 'sortlist',
+                    component: resolve => require(['../components/sort/SortList.vue'], resolve)
+                },
+                {
                     path: 'vuetable',
                     component: resolve => require(['../components/page/VueTable.vue'], resolve)     // vue-datasource组件
                 },

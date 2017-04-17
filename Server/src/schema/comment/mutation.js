@@ -29,7 +29,7 @@ let createComment = {
         }
     },
     async resolve(parentValue, {pid, postId, userId, content}, ctx) {
-        await permission(ctx, 'createComment')
+        // await permission(ctx, 'createComment')
         pid = pid || 0
         if (pid != 0) {
             let isExist = await ctx.models.Comment.findOne({

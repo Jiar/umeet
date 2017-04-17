@@ -2,7 +2,6 @@ import { signup, signin, user, users } from '../../api/user'
 import * as types from '../mutation-types.js'
 
 const state = {
-    error: null,
     signinUser: null,
     signupUser: null,
     singleUser: null,
@@ -10,7 +9,6 @@ const state = {
 }
 
 const getters = {
-    error: state => state.error,
     signinUser: state => state.signinUser,
     signupUser: state => state.signupUser,
     users: state => state.users

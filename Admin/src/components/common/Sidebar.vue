@@ -10,8 +10,8 @@
                 <el-menu-item index="/dashboard/vuetable">Vue表格组件</el-menu-item>
             </el-submenu>
             <el-submenu index="3">
-                <template slot="title"><i class="el-icon-date"></i>表单</template>
-                <el-menu-item index="/dashboard/baseform">基本表单</el-menu-item>
+                <template slot="title"><i class="el-icon-date"></i>分类管理</template>
+                <el-menu-item index="/dashboard/sortlist">分类列表</el-menu-item>
                 <el-menu-item index="/dashboard/vueeditor">编辑器</el-menu-item>
                 <el-menu-item index="/dashboard/markdown">markdown</el-menu-item>
                 <el-menu-item index="/dashboard/upload">文件上传</el-menu-item>
