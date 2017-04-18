@@ -27,7 +27,7 @@ export default (sequelize, dataType) => {
     }, {
         classMethods: {
             associate: function(models) {
-                // comment.belongsTo(models.post);
+                comment.belongsTo(models.post);
                 comment.belongsTo(models.user);
             }
         }

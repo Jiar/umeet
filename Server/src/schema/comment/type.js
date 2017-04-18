@@ -30,9 +30,7 @@ let commentType = new GraphQLObjectType({
             post: {
                 type: postType,
                 async resolve(comment) {
-                    // bug
-                    // return await comment.getPost();
-                    return await null;
+                    return await comment.getPost();
                 }
             },
             user: {

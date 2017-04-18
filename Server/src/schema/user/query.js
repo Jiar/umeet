@@ -18,7 +18,7 @@ let user =  {
         }
     },
     async resolve (parentValue, args, ctx) {
-        permission(ctx, 'user')
+        // permission(ctx, 'user')
         return await ctx.models.user.findById(args.id)
     }
 }

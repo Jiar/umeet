@@ -18,8 +18,8 @@ let post = {
         }
     },
     async resolve (parentValue, args, ctx) {
-        permission(ctx, 'post')
-        return await ctx.models.sort.findById(args.id)
+        // permission(ctx, 'post')
+        return await ctx.models.post.findById(args.id)
     }
 }
 
@@ -45,11 +45,6 @@ let posts = {
         page = page || 1
         let offset = (page - 1) * limit
         let result = await ctx.models.post.findAndCountAll({
-            include: [
-                // 加上 where 变成 内联查询
-                { model: ctx.models.sort, where: '', required: true},
-                { model: ctx.models.user, where: '', required: true}
-            ],
             order: order,
             limit: limit,
             offset: offset

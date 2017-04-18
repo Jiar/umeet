@@ -18,7 +18,7 @@ let sort =  {
         }
     },
     async resolve (parentValue, args, ctx) {
-        permission(ctx, 'sort')
+        // permission(ctx, 'sort')
         return await ctx.models.sort.findById(args.id)
     }
 }

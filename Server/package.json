@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "dev": "nodemon --exec npm run start",
     "test": "echo \"Error: no test specified\" && exit 1",
     "init_sql": "node ./init/index.js"
   },

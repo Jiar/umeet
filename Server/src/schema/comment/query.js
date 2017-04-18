@@ -18,7 +18,7 @@ let comment =  {
         }
     },
     async resolve (parentValue, args, ctx) {
-        permission(ctx, 'comment')
+        // permission(ctx, 'comment')
         return await ctx.models.comment.findById(args.id)
     }
 }
@@ -44,7 +44,7 @@ let comments = {
         limit = limit || 15
         page = page || 1
         let offset = (page - 1) * limit
-        let result = await ctx.models.post.findAndCountAll({
+        let result = await ctx.models.comment.findAndCountAll({
             order: order,
             limit: limit,
             offset: offset
