@@ -70,4 +70,10 @@ let user = models.user.create({
     console.log(e);
 });
 
+// 每次改动数据库可能都会有变动
+// 可以先删除数据库中所有表
+// 然后执行 npm run dev 重新生成表(ctrl+c结束运行)
+// 再接着导入 GameForum.sql 
+// 然后执行以下命令重新生成 Admin 账户用于登录后台管理系统 (ctrl+c结束运行)
 // node createAdmin.js admin@admin.com admin admin123
+// 最后继续运行程序 npm run dev
