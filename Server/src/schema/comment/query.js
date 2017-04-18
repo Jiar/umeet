@@ -18,7 +18,7 @@ let comment =  {
         }
     },
     async resolve (parentValue, args, ctx) {
-        // permission(ctx, 'comment')
+        await permission(ctx, 'comment');
         return await ctx.models.comment.findById(args.id)
     }
 }
@@ -40,7 +40,7 @@ let comments = {
         }
     },
     async resolve (parentValue, { page, order, limit }, ctx) {
-        // permission(ctx, 'comments')
+        await permission(ctx, 'comments');
         limit = limit || 15
         page = page || 1
         let offset = (page - 1) * limit

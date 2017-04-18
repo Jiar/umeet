@@ -1,0 +1,41 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "plugins": [ "html" ],
+    "rules": {
+        "indent": ["error", 4, { "SwitchCase": 1 }],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "no-console": ["off"],
+        "quotes": [2, "single"],
+        "semi": [2, "always"],
+        "semi-spacing": [2, { "before": false, "after": true }],
+        "sort-vars": [1, { "ignoreCase": true }],
+        "keyword-spacing": ["error", {"before": true, "after": true}],
+        "space-before-function-paren": [2, {"anonymous": "always", "named": "never"}],
+        "space-in-parens": [2, "never"],
+        "space-infix-ops": 2,
+        "space-unary-ops": [2, { "words": true, "nonwords": false }],
+        "strict": [2, "global"],
+        "use-isnan": 2,
+        "valid-jsdoc": 1,
+        "key-spacing": ["error", { "beforeColon": false,"afterColon": true }],
+        "computed-property-spacing": 1,
+        "no-mixed-spaces-and-tabs": "error",
+        "yoda": [2, "never", { "exceptRange": false }],
+        "no-else-return": 1,
+        "no-multi-spaces": 1,
+        "no-new-func": 2,
+        "no-self-compare": 2,
+        "curly": 2,
+        "comma-dangle": [2, "never"]
+    }
+}

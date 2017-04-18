@@ -16,25 +16,21 @@
 </template>
 <script>
     export default {
-        data() {
-            return {
-                name: 'nick'
-            }
-        },
         computed:{
             username(){
-                let signinUser = this.$store.getters.signinUser;
-                if (signinUser) {
-                    return signinUser.name;
+                let user = localStorage.user;
+                user = JSON.parse(user);
+                if (user) {
+                    return user.name;
                 } else {
-                    return this.name;
+                    return 'Anonymous';
                 }
             }
         },
         methods:{
             handleCommand(command) {
                 if(command == 'loginout'){
-                    this.$store.state.signinUser = null;
+                    localStorage.user = null;
                     this.$router.push('/login');
                 }
             }

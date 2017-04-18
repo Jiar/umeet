@@ -9,7 +9,7 @@ import router from './controller'
 import jwt from "jsonwebtoken"
 import json from 'koa-json'
 import bodyParser from 'koa-bodyparser'
-// import SessionStore from './middleware/session-store'
+import SessionStore from './middleware/session-store'
 import cors from 'koa2-cors'
 
 class App {
@@ -27,22 +27,24 @@ class App {
                     path: error.path
                 }
             }
-        })))
-        this.koa = new Koa()
-            .use(cors({
+        })));
+        this.koa = new Koa();
+        this.koa.use(cors({
                 credentials: true,
                 allowMethods: ['GET', 'POST', 'DELETE']
-            }))
-            .use(json())
-            .use(bodyParser())
-            // .use(SessionStore)
-            // .use(this.localError())
-            .use(router.routes())
-            .use(router.allowedMethods());
-        this.koa.proxy = true
-        this.koa.context.models = this.models()
-        this.koa.context.redis = this.redis()
-        this.koa.context.config = this.config
+            }));
+        this.koa.use(json());
+        this.koa.use(bodyParser());
+        this.koa.use(SessionStore);
+        this.koa.use(this.localError());
+        // this.koa.use(this.interceptorGraphql());
+        this.koa.use(router.routes());
+        this.koa.use(router.allowedMethods());
+        this.koa.proxy = true;
+
+        this.koa.context.models = this.models();
+        this.koa.context.redis = this.redis();
+        this.koa.context.config = this.config;
     }
 
     localError() {
@@ -52,6 +54,17 @@ class App {
                 delete ctx.session.error
             }
             await next()
+        }
+    }
+
+    interceptorGraphql() {
+        return async (ctx, next) => {
+            if (ctx.request.path == '/graphql') {
+                if (ctx.request.header['x-api-token']) {
+                    return;
+                }
+            }
+            await router.redirect('/login');
         }
     }
 

@@ -1,8 +1,8 @@
 import { client } from './index'
-// import md5 from 'md5'
+import md5 from 'md5'
 
 function signup(name, email, password) {
-    // password = md5(password)
+    password = md5(password)
     let graphql = `
     {
         user: signup(name:"${name}", email:"${email}", password:"${password}") {
@@ -24,7 +24,7 @@ function signup(name, email, password) {
 }
 
 function signin(account, password) {
-    // password = md5(password)
+    password = md5(password)
     let graphql = `
     {
         user: signin(account:"${account}", password:"${password}") {

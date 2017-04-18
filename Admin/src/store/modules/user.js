@@ -26,6 +26,8 @@ const mutations = {
             state.error = error;
         }
         state.signinUser = signinUser;
+        //如果登录完成，则将用户放入LocalStore
+        localStorage.user = JSON.stringify(signinUser);
     },
     [types.USER_USER](state, {singleUser, error}) {
         if (error) {

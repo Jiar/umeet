@@ -6,7 +6,7 @@ import {
 
 import { UserError } from 'graphql-errors'
 import permission from '../permission'
-import ERRORS from '../error'
+import ERRORS from '../errors'
 import { postType } from './type'
 
 /**
@@ -32,7 +32,7 @@ let createPost = {
         }
     },
     async resolve(parentValue, {sortId, userId, title, type, content}, ctx) {
-        // await permission(ctx, 'createPost')
+        await permission(ctx, 'createPost');
         let sort = await ctx.models.post.create({
             sortId: sortId,
             userId: userId,

@@ -10,7 +10,7 @@ import { UserError } from 'graphql-errors'
 import validator from 'validator'
 import md5 from 'md5'
 import permission from '../permission'
-import ERRORS from '../error'
+import ERRORS from '../errors'
 import { userType, tokenType } from './type'
 
 /**
@@ -30,7 +30,7 @@ let signup = {
         }
     },
     async resolve(parentValue, {name, email, password}, ctx) {
-        // await permission(ctx, 'signup')
+        await permission(ctx, 'signup')
         if (email == null || email.length == 0) {
             throw new UserError(ERRORS[401001])
         }
@@ -101,12 +101,9 @@ let signin = {
             if (!user) {
                 throw new UserError(ERRORS[401012])
             }
-            // password = md5(password)
-            // if (!user.checkPassword(password)) {
-            //     throw new UserError(ERRORS[401014])
-            // }
             password = md5(password)
-            if (user.password != password) {
+            console.log(password);
+            if (!user.checkPassword(password)) {
                 throw new UserError(ERRORS[401014])
             }
             return user
@@ -119,12 +116,8 @@ let signin = {
             if (!user) {
                 throw new UserError(ERRORS[401013])
             }
-            // password = md5(password)
-            // if (!user.checkPassword(password)) {
-            //     throw new UserError(ERRORS[401014])
-            // }
             password = md5(password)
-            if (user.password != password) {
+            if (!user.checkPassword(password)) {
                 throw new UserError(ERRORS[401014])
             }
             return user

@@ -18,7 +18,7 @@ let sort =  {
         }
     },
     async resolve (parentValue, args, ctx) {
-        // permission(ctx, 'sort')
+        await permission(ctx, 'sort');
         return await ctx.models.sort.findById(args.id)
     }
 }
@@ -40,7 +40,7 @@ let sorts = {
         }
     },
     async resolve (parentValue, { page, order, limit }, ctx) {
-        // permission(ctx, 'sorts')
+        await permission(ctx, 'sorts');
         limit = limit || 15
         page = page || 1
         let offset = (page - 1) * limit

@@ -18,7 +18,7 @@ let post = {
         }
     },
     async resolve (parentValue, args, ctx) {
-        // permission(ctx, 'post')
+        await permission(ctx, 'post')
         return await ctx.models.post.findById(args.id)
     }
 }
@@ -40,7 +40,7 @@ let posts = {
         }
     },
     async resolve (parentValue, { page, order, limit }, ctx) {
-        // permission(ctx, 'posts')
+        await permission(ctx, 'posts');
         limit = limit || 15
         page = page || 1
         let offset = (page - 1) * limit

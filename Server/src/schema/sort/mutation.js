@@ -6,7 +6,7 @@ import {
 
 import { UserError } from 'graphql-errors'
 import permission from '../permission'
-import ERRORS from '../error'
+import ERRORS from '../errors'
 import { sortType } from './type'
 
 /**
@@ -26,7 +26,7 @@ let createSort = {
         }
     },
     async resolve(parentValue, {pid, title, description}, ctx) {
-        // await permission(ctx, 'createSort')
+        await permission(ctx, 'createSort');
         let isExist = await ctx.models.sort.findOne({
             where: {
                 title: title

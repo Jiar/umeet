@@ -27,7 +27,7 @@
             <el-pagination
                     layout="prev, pager, next"
                     :current-page="currentPage"
-                    :page-sizes="pageSizes"
+                    :page-size="pageSize"
                     :total="total"
                     @current-change="pageChange">
             </el-pagination>
@@ -37,11 +37,12 @@
 
 <script>
     import { mapGetters } from 'vuex';
+    import { Message } from 'element-ui';
     export default {
         data() {
             return {
                 currentPage: 1,
-                pageSizes: [15],
+                pageSize: 15,
                 total: 0,
             };
         },
@@ -59,7 +60,7 @@
                 self.$store.dispatch('posts', {
                     page: self.currentPage,
                     order: 'id asc',
-                    limit: self.pageSizes[0]
+                    limit: self.pageSize
                 }).then( result => {
                     if (result.code) {
                         Message({
@@ -68,6 +69,8 @@
                             message: result.msg
                         });
                     } else {
+                        self.pageSize = result.limit;
+                        self.currentPage = result.page;
                         self.total = result.count;
                     }
                 });
