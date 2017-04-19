@@ -13,6 +13,7 @@
                     <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
                 </div>
             </el-form>
+            <p style="font-size:12px;line-height:30px;color:#999;">留意Server端下的createAdmin.js中的注释</p>
         </div>
     </div>
 </template>
