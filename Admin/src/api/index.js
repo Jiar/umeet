@@ -15,7 +15,7 @@ class Client {
         if (localStorage.user) {
             let user = localStorage.user
             try {
-                user = JSON.parse(user)
+                user = JSON.parse(user) 
                 token = user.token
             } catch (e) {
                 console.log(e)
