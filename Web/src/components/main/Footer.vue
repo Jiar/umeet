@@ -5,5 +5,7 @@
 </template>
 
 <style scoped>
-
+    .main_footer {
+        text-align: center;
+    }
 </style>

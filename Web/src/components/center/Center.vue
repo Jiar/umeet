@@ -16,5 +16,10 @@
 </script>
 
 <style scoped>
-
+    .center_center {
+        text-align: center;
+        background-color: #e2e2e2;
+        background-image: url(/static/img/shadow_light.png);
+        background-repeat: repeat-x;
+    }
 </style>
