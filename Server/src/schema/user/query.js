@@ -64,6 +64,6 @@ let users = {
 }
 
 export default {
-    userp: user,
+    user: user,
     users: users
 }

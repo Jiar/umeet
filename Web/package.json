@@ -7,24 +7,18 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-    "e2e": "node test/e2e/runner.js",
-    "test": "npm run unit && npm run e2e",
-    "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
+    "build:dll": "webpack --config build/webpack.dll.conf.js"
   },
   "dependencies": {
-    "babel-eslint": "^7.2.2",
-    "eslint": "^3.19.0",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-html": "^2.0.1",
-    "eslint-plugin-standard": "^2.3.1",
+    "element-ui": "^1.2.9",
+    "semver": "^5.3.0",
     "vue": "^2.2.2",
-    "vue-router": "^2.2.0"
+    "vue-router": "^2.2.0",
+    "vuex": "^2.3.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.22.1",
-    "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
     "babel-plugin-istanbul": "^3.1.2",
     "babel-plugin-transform-runtime": "^6.22.0",
@@ -39,13 +33,6 @@
     "cross-env": "^3.1.4",
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.26.1",
-    "eslint": "^3.14.1",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-friendly-formatter": "^2.0.7",
-    "eslint-loader": "^1.6.1",
-    "eslint-plugin-html": "^2.0.0",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^2.0.1",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.14.1",
     "extract-text-webpack-plugin": "^2.0.0",

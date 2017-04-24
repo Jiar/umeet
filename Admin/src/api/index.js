@@ -5,7 +5,7 @@ class Client {
 
     constructor() {
         this.transport = new Lokka({
-            transport: new Transport('http://127.0.0.1:6050/graphql')
+            transport: new Transport('http://127.0.0.1:6010/graphql')
         });
     }
 

@@ -1,6 +1,6 @@
 'use strict'
 
-const port = process.env.PORT || 6050
+const port = process.env.PORT || 6010
 const env = process.env.NODE_ENV || 'local'
 const config = require("./config.json")[env]
 const srcPath = config.debug == true ? './src' : './dist'
