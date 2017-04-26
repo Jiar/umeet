@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import user from './modules/user'
-import sort from './modules/sort'
-import post from './modules/post'
+import node from './modules/node'
+import topic from './modules/topic'
 import comment from './modules/comment'
 
 Vue.use(Vuex)
@@ -25,8 +25,8 @@ export default new Vuex.Store({
     mutations,
     modules: {
         user,
-        sort,
-        post,
+        node,
+        topic,
         comment
     }
 })

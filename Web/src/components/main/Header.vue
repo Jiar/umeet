@@ -1,6 +1,6 @@
 <template>
     <div class="main_header">
-        <a class="main_logo" href="/"><img src="/static/img/umeet.png" style="width: 94px;height: 30px;"/></a>
+        <a class="main_logo" href="#/"><img src="/static/img/logo.png" style="width: 94px;height: 30px;"/></a>
         <div class="main_user">
             <div v-if="login">
                 {{ username }}

@@ -35,10 +35,10 @@ const mutations = {
 }
 
 const actions = {
-    createComment({commit}, {pid, postId, userId, content}) {
+    createComment({commit}, {pid, topicId, userId, content}) {
         let self = this;
         return new Promise((resolve) => {
-            createComment(pid, postId, userId, content).then( result => {
+            createComment(pid, topicId, userId, content).then( result => {
                 resolve(result.comment);
                 commit(types.COMMENT_CREATEDCOMMENT, { createdComment: result.comment });
             }).catch(error => {

@@ -22,12 +22,12 @@ export default new Router({
                     component: resolve => require(['../components/user/UserList.vue'], resolve)
                 },
                 {
-                    path: 'sortlist',
-                    component: resolve => require(['../components/sort/SortList.vue'], resolve)
+                    path: 'nodelist',
+                    component: resolve => require(['../components/node/NodeList.vue'], resolve)
                 },
                 {
-                    path: 'postlist',
-                    component: resolve => require(['../components/post/Postlist.vue'], resolve)
+                    path: 'topiclist',
+                    component: resolve => require(['../components/topic/Topiclist.vue'], resolve)
                 },
                 {
                     path: 'commentlist',

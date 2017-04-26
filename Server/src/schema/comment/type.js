@@ -7,34 +7,31 @@ import {
 } from 'graphql'
 
 import moment from 'moment'
-import { postType } from '../post/type'
+import { topicType } from '../topic/type'
 import { userType } from '../user/type'
 
 let commentType = new GraphQLObjectType({
     name: 'comment',
-    description: '单个评论',
+    description: '评论',
     fields() {
         return {
             id: {
                 type: GraphQLInt,
+                description: '编号',
                 resolve(comment) {
                     return comment.id;
                 }
             },
-            pid: {
-                type: GraphQLInt,
-                resolve(comment) {
-                    return comment.pid;
-                }
-            },
-            post: {
-                type: postType,
+            topic: {
+                type: topicType,
+                description: '所属主题',
                 async resolve(comment) {
-                    return await comment.getPost();
+                    return await comment.getTopic();
                 }
             },
             user: {
                 type: userType,
+                description: '所属用户',
                 async resolve(comment) {
                     return await comment.getUser();
                 }
@@ -48,6 +45,7 @@ let commentType = new GraphQLObjectType({
             },
             createTime: {
                 type: GraphQLString,
+                description: '创建时间',
                 resolve (comment) {
                     return moment(comment.createTime).format('YYYY-MM-DD HH:mm:ss');
                 }

@@ -12,7 +12,7 @@
             </el-table-column>
             <el-table-column prop="pid" label="父编号" sortable width="150">
             </el-table-column>
-            <el-table-column prop="post.title" label="帖子主题" sortable>
+            <el-table-column prop="topic.title" label="主题名称" sortable>
             </el-table-column>
             <el-table-column prop="user.name" label="用户" sortable>
             </el-table-column>
@@ -60,7 +60,7 @@
                     order: 'id asc',
                     limit: self.pageSize
                 }).then( result => {
-                    if (result.code) {
+                    if (result.error) {
                         Message({
                             type: 'error',
                             showClose: true,

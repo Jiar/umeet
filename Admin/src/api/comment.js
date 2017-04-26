@@ -1,14 +1,13 @@
 import { client } from './index'
 
-function createComment(pid, postId, userId, content) {
+function createComment(pid, topicId, userId, content) {
     let graphql = `
     {
-        comment: createComment(pid:${pid}, postId:${postId}, userId:${userId}, content:"${content}") {
+        comment: createComment(topicId:${topicId}, userId:${userId}, content:"${content}") {
             id,
-            pid,
-            post {
+            topic {
                 id,
-                sort {
+                node {
                     id,
                     pid,
                     title,
@@ -60,10 +59,9 @@ function comment(id) {
     {
         comment: comment(id:${id}) {
             id,
-            pid,
-            post {
+            topic {
                 id,
-                sort {
+                node {
                     id,
                     pid,
                     title,
@@ -116,10 +114,9 @@ function comments(page, order, limit) {
         comment: comments(page:${page}, order:"${order}", limit:${limit}) {
             rows {
                 id,
-                pid,
-                post {
+                topic {
                     id,
-                    sort {
+                    node {
                         id,
                         pid,
                         title,

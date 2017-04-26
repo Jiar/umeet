@@ -11,20 +11,22 @@ import permission from '../permission'
 
 let user =  {
     type: userType,
+    description: '根据编号获取用户',
     args: {
         id: {
-            description: 'id of the user',
-            type: GraphQLInt
+            type: GraphQLInt,
+            description: '用户编号'
         }
     },
     async resolve (parentValue, args, ctx) {
-        await permission(ctx, 'user')
+        // await permission(ctx, 'user')
         return await ctx.models.user.findById(args.id)
     }
 }
 
 let users = {
     type: pagination(userType, 'user'),
+    description: '用户列表分页查询',
     args: {
         page: {
             type: GraphQLInt,
@@ -32,7 +34,7 @@ let users = {
         },
         order: {
             type: GraphQLString,
-            description: '排序'
+            description: '排序方式'
         },
         limit: {
             type: GraphQLInt,

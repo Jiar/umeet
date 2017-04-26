@@ -12,7 +12,7 @@
             访问地址：<a href="http://element.eleme.io/#/zh-CN/component/upload" target="_blank">Element UI Upload</a>
         </div>
         <el-upload
-                action="/api/posts/"
+                action="/api/topics/"
                 type="drag"
                 :thumbnail-mode="true"
                 :on-preview="handlePreview"
@@ -33,7 +33,7 @@
         <vue-core-image-upload :class="['pure-button','pure-button-primary','js-btn-crop']"
                                :crop="true"
                                text="上传图片"
-                               url="/api/posts/"
+                               url="/api/topics/"
                                extensions="png,gif,jpeg,jpg"
                                @:imageuploaded="imageuploaded"
                                @:errorhandle="handleError"></vue-core-image-upload>

@@ -11,20 +11,22 @@ import permission from '../permission'
 
 let comment =  {
     type: commentType,
+    description: '根据编号获取评论',
     args: {
         id: {
-            description: 'id of the comment',
-            type: GraphQLInt
+            type: GraphQLInt,
+            description: '评论编号'
         }
     },
     async resolve (parentValue, args, ctx) {
-        await permission(ctx, 'comment');
+        // await permission(ctx, 'comment');
         return await ctx.models.comment.findById(args.id)
     }
 }
 
 let comments = {
     type: pagination(commentType, 'comment'),
+    description: '评论列表分页查询',
     args: {
         page: {
             type: GraphQLInt,
@@ -32,7 +34,7 @@ let comments = {
         },
         order: {
             type: GraphQLString,
-            description: '排序'
+            description: '排序方式'
         },
         limit: {
             type: GraphQLInt,
@@ -40,7 +42,7 @@ let comments = {
         }
     },
     async resolve (parentValue, { page, order, limit }, ctx) {
-        await permission(ctx, 'comments');
+        // await permission(ctx, 'comments');
         limit = limit || 15
         page = page || 1
         let offset = (page - 1) * limit

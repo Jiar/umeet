@@ -18,6 +18,7 @@ export default {
         -webkit-locale: "zh-CN";
     }
     body {
+        min-width: 820px;
         padding: 0px;
         margin: 0px;
         display: block;

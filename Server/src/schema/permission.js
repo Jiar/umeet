@@ -2,7 +2,7 @@ import { UserError } from 'graphql-errors'
 import jwt from 'jsonwebtoken'
 import ERRORS from './errors'
 
-let permission = async function ( ctx ) {
+let permission = async function (ctx) {
     if (ctx.session.user) {
         ctx.user = ctx.session.user;
         return;

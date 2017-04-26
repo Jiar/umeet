@@ -21,7 +21,7 @@ class Models {
                 return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js')
             })
         for(let modelFile of modelFiles) {
-            let model = this.sequelize["import"](path.join(__dirname, modelFile))
+            let model = this.sequelize['import'](path.join(__dirname, modelFile))
             db[model.name] = model
         }
         for(let modelName in db) {

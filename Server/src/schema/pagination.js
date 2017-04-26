@@ -7,7 +7,7 @@ import {
 export function pagination(itemType, name) {
     return new GraphQLObjectType({
         name: name + '_pagination',
-        description: name + ' page info',
+        description: name + '分页批量查询',
         fields: () => ({
             rows: { type: new GraphQLList(itemType) },
             page: { type: GraphQLInt },

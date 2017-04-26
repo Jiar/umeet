@@ -4,21 +4,24 @@ import {
 } from 'graphql'
 
 import user from './user'
-import sort from './sort'
-import post from './post'
+import node from './node'
+import tab from './tab'
+import topic from './topic'
 import comment from './comment'
 
 let queryFields = {}
 let mutationFields = {}
 
 Object.assign(queryFields, user.query)
-Object.assign(queryFields, sort.query)
-Object.assign(queryFields, post.query)
+Object.assign(queryFields, node.query)
+Object.assign(queryFields, tab.query)
+Object.assign(queryFields, topic.query)
 Object.assign(queryFields, comment.query)
 
 Object.assign(mutationFields, user.mutation)
-Object.assign(mutationFields, sort.mutation)
-Object.assign(mutationFields, post.mutation)
+Object.assign(mutationFields, node.mutation)
+Object.assign(mutationFields, tab.mutation)
+Object.assign(mutationFields, topic.mutation)
 Object.assign(mutationFields, comment.mutation)
 
 export default new GraphQLSchema({

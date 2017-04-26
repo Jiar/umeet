@@ -10,11 +10,11 @@
             </el-submenu>
             <el-submenu index="3">
                 <template slot="title"><i class="el-icon-menu"></i>分类管理</template>
-                <el-menu-item index="/dashboard/sortlist">分类列表</el-menu-item>
+                <el-menu-item index="/dashboard/nodelist">分类列表</el-menu-item>
             </el-submenu>
             <el-submenu index="4">
-                <template slot="title"><i class="el-icon-menu"></i>帖子管理</template>
-                <el-menu-item index="/dashboard/postlist">帖子列表</el-menu-item>
+                <template slot="title"><i class="el-icon-menu"></i>主题管理</template>
+                <el-menu-item index="/dashboard/topiclist">主题列表</el-menu-item>
             </el-submenu>
             <el-submenu index="5">
                 <template slot="title"><i class="el-icon-menu"></i>评论管理</template>

@@ -7,10 +7,10 @@ export const USER_USERS = 'USER_USERS'
 export const SORT_CREATEDSORT = 'SORT_CREATEDSORT'
 export const SORT_SORT = 'SORT_SORT'
 export const SORT_SORTS = 'SORT_SORTS'
-// post
-export const POST_CREATEDPOST = 'POST_CREATEDPOST'
-export const POST_POST = 'POST_POST'
-export const POST_POSTS = 'POST_POSTS'
+// topic
+export const TOPIC_CREATEDTOPIC = 'TOPIC_CREATEDTOPIC'
+export const TOPIC_TOPIC = 'TOPIC_TOPIC'
+export const TOPIC_TOPICS = 'TOPIC_TOPICS'
 // comment
 export const COMMENT_CREATEDCOMMENT = 'COMMENT_CREATEDCOMMENT'
 export const COMMENT_COMMENT = 'COMMENT_COMMENT'

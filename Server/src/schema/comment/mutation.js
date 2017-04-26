@@ -9,41 +9,28 @@ import permission from '../permission'
 import ERRORS from '../errors'
 import { commentType } from './type'
 
-/**
- * 创建评论
- */
 let createComment = {
     type: commentType,
+    description: '创建评论',
     args: {
-        pid: {
-            type: GraphQLInt
-        },
-        postId: {
-            type: new GraphQLNonNull(GraphQLInt)
+        topicId: {
+            type: new GraphQLNonNull(GraphQLInt),
+            description: '主题编号'
         },
         userId: {
-            type: new GraphQLNonNull(GraphQLInt)
+            type: new GraphQLNonNull(GraphQLInt),
+            description: '用户编号'
         },
         content: {
-            type: new GraphQLNonNull(GraphQLString)
+            type: new GraphQLNonNull(GraphQLString),
+            description: '评论内容'
         }
     },
-    async resolve(parentValue, {pid, postId, userId, content}, ctx) {
+    async resolve(parentValue, {topicId, userId, content}, ctx) {
         await permission(ctx, 'createComment')
-        pid = pid || 0
-        if (pid != 0) {
-            let isExist = await ctx.models.comment.findOne({
-                where: {
-                    id: pid
-                }
-            })
-            if (!isExist) {
-                throw new UserError(ERRORS[401041])
-            }
-        }
         let comment = await ctx.models.comment.create({
             pid: pid,
-            postId: postId,
+            topicId: topicId,
             userId: userId,
             content: content
         })

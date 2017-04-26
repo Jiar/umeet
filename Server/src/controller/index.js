@@ -1,15 +1,17 @@
 import KoaRouter from 'koa-router'
 
 import user from './user'
-import sort from './sort'
-import post from './post'
+import node from './node'
+import tab from './tab'
+import topic from './topic'
 import comment from './comment'
 
 const router = KoaRouter()
 
 router.use('/user', user.routes(), user.allowedMethods())
-router.use('/sort', sort.routes(), sort.allowedMethods())
-router.use('/post', post.routes(), post.allowedMethods())
+router.use('/node', node.routes(), node.allowedMethods())
+router.use('/tab', tab.routes(), tab.allowedMethods())
+router.use('/topic', topic.routes(), topic.allowedMethods())
 router.use('/comment', comment.routes(), comment.allowedMethods())
 
 router.get('/login', async(ctx, next) => {

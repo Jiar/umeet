@@ -11,7 +11,7 @@ export default new Router({
             children:[
                 {
                     path: '',
-                    component: resolve => require(['../components/content/Home.vue'], resolve)
+                    component: resolve => require(['../components/content/home/Home.vue'], resolve)
                 }
             ]
         },
@@ -19,5 +19,13 @@ export default new Router({
             path: '/login',
             component: resolve => require(['../components/login/Login.vue'], resolve)
         },
+        {
+            path: '/about',
+            component: resolve => require(['../components/other/About.vue'], resolve)
+        },
+        {
+            path: '/mission',
+            component: resolve => require(['../components/other/Mission.vue'], resolve)
+        }
     ]
 })

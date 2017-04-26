@@ -45,7 +45,7 @@
                             account: this.ruleForm.username,
                             password: this.ruleForm.password
                         }).then( result => {
-                            if (result.code) {
+                            if (result.error) {
                                 Message({
                                     type: 'error',
                                     showClose: true,

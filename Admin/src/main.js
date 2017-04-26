@@ -25,7 +25,7 @@ store.subscribe((mutation, state) => {
             message: error.msg,
             type: 'error'
         });
-        if (error.code == 411001 || error.code == 411002 || error.code == 411003) {
+        if (error.error && (error.code == 411001 || error.code == 411002 || error.code == 411003)) {
             location.href = '/#/';
         }
     }

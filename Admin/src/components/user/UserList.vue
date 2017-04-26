@@ -72,7 +72,7 @@
                     order: 'id asc',
                     limit: self.pageSize
                 }).then( result => {
-                    if (result.code) {
+                    if (result.error) {
                         Message({
                             type: 'error',
                             showClose: true,
