@@ -4,21 +4,25 @@
             <el-menu-item index="/dashboard">
                 <i class="el-icon-setting"></i>自述
             </el-menu-item>
+            <el-submenu index="1">
+                <template slot="title"><i class="el-icon-menu"></i>节点管理</template>
+                <el-menu-item index="/dashboard/nodelist">节点列表</el-menu-item>
+            </el-submenu>
             <el-submenu index="2">
-                <template slot="title"><i class="el-icon-menu"></i>用户管理</template>
-                <el-menu-item index="/dashboard/userlist">用户列表</el-menu-item>
+                <template slot="title"><i class="el-icon-menu"></i>标签管理</template>
+                <el-menu-item index="/dashboard/tablist">标签列表</el-menu-item>
             </el-submenu>
             <el-submenu index="3">
-                <template slot="title"><i class="el-icon-menu"></i>分类管理</template>
-                <el-menu-item index="/dashboard/nodelist">分类列表</el-menu-item>
-            </el-submenu>
-            <el-submenu index="4">
                 <template slot="title"><i class="el-icon-menu"></i>主题管理</template>
                 <el-menu-item index="/dashboard/topiclist">主题列表</el-menu-item>
             </el-submenu>
-            <el-submenu index="5">
+            <el-submenu index="4">
                 <template slot="title"><i class="el-icon-menu"></i>评论管理</template>
                 <el-menu-item index="/dashboard/commentlist">评论列表</el-menu-item>
+            </el-submenu>
+            <el-submenu index="5">
+                <template slot="title"><i class="el-icon-menu"></i>用户管理</template>
+                <el-menu-item index="/dashboard/userlist">用户列表</el-menu-item>
             </el-submenu>
             <el-submenu index="6">
                 <template slot="title"><i class="el-icon-star-on"></i>示例用法</template>

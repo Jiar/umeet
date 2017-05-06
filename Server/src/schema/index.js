@@ -12,17 +12,17 @@ import comment from './comment'
 let queryFields = {}
 let mutationFields = {}
 
-Object.assign(queryFields, user.query)
 Object.assign(queryFields, node.query)
 Object.assign(queryFields, tab.query)
 Object.assign(queryFields, topic.query)
 Object.assign(queryFields, comment.query)
+Object.assign(queryFields, user.query)
 
-Object.assign(mutationFields, user.mutation)
 Object.assign(mutationFields, node.mutation)
 Object.assign(mutationFields, tab.mutation)
 Object.assign(mutationFields, topic.mutation)
 Object.assign(mutationFields, comment.mutation)
+Object.assign(mutationFields, user.mutation)
 
 export default new GraphQLSchema({
     query: new GraphQLObjectType({

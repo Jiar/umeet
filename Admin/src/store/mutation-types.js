@@ -7,6 +7,10 @@ export const USER_USERS = 'USER_USERS'
 export const NODE_CREATEDNODE = 'NODE_CREATEDNODE'
 export const NODE_NODE = 'NODE_NODE'
 export const NODE_NODES = 'NODE_NODES'
+// tab
+export const TAB_CREATEDTAB = 'TAB_CREATEDTAB'
+export const TAB_TAB = 'TAB_TAB'
+export const TAB_TABS = 'TAB_TABS'
 // topic
 export const TOPIC_CREATEDTOPIC = 'TOPIC_CREATEDTOPIC'
 export const TOPIC_TOPIC = 'TOPIC_TOPIC'

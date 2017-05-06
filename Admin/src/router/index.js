@@ -18,12 +18,12 @@ export default new Router({
                     component: resolve => require(['../components/example/Readme.vue'], resolve)
                 },
                 {
-                    path: 'userlist',
-                    component: resolve => require(['../components/user/UserList.vue'], resolve)
-                },
-                {
                     path: 'nodelist',
                     component: resolve => require(['../components/node/NodeList.vue'], resolve)
+                },
+                {
+                    path: 'tablist',
+                    component: resolve => require(['../components/tab/TabList.vue'], resolve)
                 },
                 {
                     path: 'topiclist',
@@ -32,6 +32,10 @@ export default new Router({
                 {
                     path: 'commentlist',
                     component: resolve => require(['../components/comment/Commentlist.vue'], resolve)
+                },
+                {
+                    path: 'userlist',
+                    component: resolve => require(['../components/user/UserList.vue'], resolve)
                 }
             ]
         },

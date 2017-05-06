@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import user from './modules/user'
 import node from './modules/node'
+import tab from './modules/tab'
 import topic from './modules/topic'
 import comment from './modules/comment'
 
@@ -26,6 +27,7 @@ export default new Vuex.Store({
     modules: {
         user,
         node,
+        tab,
         topic,
         comment
     }
